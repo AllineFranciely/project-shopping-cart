@@ -1,6 +1,5 @@
 const shopCartItems = document.querySelector('.cart_items');
 const sectionItems = document.querySelector('.items');
-
 const cartItems = document.getElementsByClassName('cart_items');
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -78,7 +77,7 @@ const addProduct = async (item) => {
   const itemSelected = createCartItemElement(addItem);
   shopCartItems.appendChild(itemSelected);
   saveCartItems(shopCartItems.innerHTML);
-  addPrice(itemObject.saleProce);
+  addPrice(itemObject.salePrice);
 };
 
 window.onload = () => { 
