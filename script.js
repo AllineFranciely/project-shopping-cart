@@ -65,6 +65,8 @@ const loading = () => {
     const productItem = createProductItemElement(productProject);
     sectionItems.appendChild(productItem);
   });
+  const load = document.querySelector('.loading');
+  load.remove();
 };
 const addProduct = async (item) => {
   const addData = await fetchItem(item);
