@@ -68,11 +68,6 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
-const sumPrices = (data) => {
-  initialPrice += data;
-  totalPrice.innerText = initialPrice;
-};
-
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
@@ -106,7 +101,7 @@ function restoreItems() {
   cartItems.innerHTML = getSavedCartItems();
   const cartItem = document.querySelectorAll('.cart__item');
   cartItem.forEach((item) => item.addEventListener('click', cartItemClickListener));
-};
+}
 
 window.onload = () => { 
   searchProducts('computador');
