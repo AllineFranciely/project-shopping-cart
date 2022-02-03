@@ -15,6 +15,28 @@ function createCustomElement(element, className, innerText) {
   e.innerText = innerText;
   return e;
 }
+
+function cartItemClickListener(event) {
+  cartItems.removeChild(event.target);
+  saveCartItems(cartItems.innerHTML);
+}
+
+function createCartItemElement({ sku, name, salePrice }) {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.addEventListener('click', cartItemClickListener);
+  return li;
+}
+
+const addProduct = async (sku) => {
+  const addData = await fetchItem(sku);
+  const addItem = createCartItemElement(addData); // insere o item no cart
+  cartItems.appendChild(addItem); 
+  // addAmount(clickedProduct.price);
+  saveCartItems(cartItems.innerHTML);
+};
+
 function createProductItemElement({ sku, name, image }) {
   const section = document.createElement('section');
   section.className = 'item';
@@ -30,17 +52,7 @@ function createProductItemElement({ sku, name, image }) {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-function cartItemClickListener(event) {
-  cartItems.removeChild(event.target);
-  saveCartItems(cartItems.innerHTML);
-}
-function createCartItemElement({ sku, name, salePrice }) {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
-}
+
 // Cria a função de carregando: 
 const loading = () => {
   const loadingAPI = document.createElement('h3');
@@ -64,14 +76,6 @@ const loading = () => {
   });
   const load = document.querySelector('.loading');
   load.remove();
-};
-
-const addProduct = async (sku) => {
-  const addData = await fetchItem(sku);
-  const addItem = createCartItemElement(addData); // insere o item no cart
-  cartItems.appendChild(addItem); 
-  // addAmount(clickedProduct.price);
-  saveCartItems(cartItems.innerHTML);
 };
 
 function clear() {
