@@ -32,7 +32,7 @@ function createCartItemElement({ sku, name, salePrice }) {
 const addProduct = async (sku) => {
   const addData = await fetchItem(sku);
   const addItem = createCartItemElement(addData); // insere o item no cart
-  cartItems.appendChild(addItem); 
+  // cartItems.appendChild(addItem); 
   // addAmount(clickedProduct.price);
   saveCartItems(cartItems.innerHTML);
 };
@@ -64,7 +64,7 @@ const loading = () => {
   const searchProducts = async (product) => {
     loading();
   const search = await fetchProducts(product);
-  console.log(search);
+  // console.log(search);
   search.results.forEach((item) => {
     const productProject = {
       sku: item.id,
