@@ -30,6 +30,11 @@ function cartItemClickListener(event) {
   saveCartItems(cartItems.innerHTML);
 }  
 
+const sumPrices = (data) => {
+  initialPrice += data;
+  totalPrice.innerText = initialPrice;
+};
+
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -95,14 +100,6 @@ const loading = () => {
   });
   const load = document.querySelector('.loading');
   load.remove();
-};
-
-
-
-function clear () {
-  emptyCart.addEventListener('click', () => {
-    cartItems.innerHTML = '';
-  });
 };
 
 function restoreItems() {
