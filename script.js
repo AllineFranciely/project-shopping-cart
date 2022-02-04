@@ -21,6 +21,7 @@ return e;
 // Elimina item clicado do cart (requisito 3): 
 function cartItemClickListener(event) {
 event.target.remove();
+saveCartItems(sectionItems.innerHTML);
 }
 
 // Cria o item da lista:
@@ -39,9 +40,9 @@ function getSkuFromProductItem(item) {
 
 // Requisito 2:
 function clickCart(product) {
-  // const sectionItems = document.querySelector('.cart__items');
 const itemsCart = createCartItemElement(product);
 sectionItems.appendChild(itemsCart);
+saveCartItems(sectionItems.innerHTML);
 }
 
 // Requisito 2: 
@@ -95,15 +96,27 @@ const load = document.querySelector('.loading');
 load.remove();
 };
 
+// Implementa a lógica do botão de esvaziar carrinho (requisito 6):
 const buttonCleadCart = document.querySelector('.empty-cart');
 buttonCleadCart.addEventListener('click', () => {
 sectionItems.innerHTML = '';
+saveCartItems(sectionItems.innerHTML);
 });
 
+// Restaura os itens no carrinho quando recarrega (requisito 4):
 function restoreItems() {
-const loadItems = getSavedCartItems();
-sectionItems.innerHTML = loadItems;
+sectionItems.innerHTML = getSavedCartItems();
+const cartItem = document.querySelectorAll('.cart__item');
+cartItem.forEach((item) => item.addEventListener('click', cartItemClickListener)); // adiciona de novo o evento do requisito 3.
 } 
+// O colega Davíd Rogér - T19-B, me ajudou na lógica da questão 4. 
+
+// const refresh = getSavedCartItems();
+// console.log(typeof refresh);
+// const arrayRefresh = refresh.split(''); // o .split transforma minha string refresh em array para que ela possa receber o evento do forEach.
+// console.log( arrayRefresh);
+// arrayRefresh.forEach((element) => element.addEventListener('click', cartItemClickListener));
+// sectionItems.innerHTML = refresh;
 
 window.onload = () => { 
 searchProducts('computador');
