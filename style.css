@@ -77,8 +77,8 @@ body {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  background-image: url(/images.jpeg);
-  background-blend-mode:color-dodge;
+  background-image: url('/images.jpeg');
+  background-blend-mode: color-dodge;
   background-color: rgb(37, 22, 51);
 }
 
@@ -152,6 +152,7 @@ body {
   background-color: rgb(249, 249, 246);
   margin-top: 20px;
 }
+
 .empty-cart:hover {
   background: rgb(235, 75, 75);
 }
