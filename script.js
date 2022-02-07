@@ -1,6 +1,5 @@
 const sectionItems = document.querySelector('.cart__items');
 const itemsScreen = document.querySelector('.items');
-const totalPrice = document.querySelector('.total-price');
 
 // Cria elemento de imagem e adiciona na tela no fornecimento do parâmetro:
 function createProductImageElement(imageSource) {
@@ -18,10 +17,28 @@ e.innerText = innerText;
 return e;
 }
 
+// acessa o valor e cria a soma (requsiito 5):
+function sumPrices() {
+  const precoItems = document.querySelectorAll('.cart__item');
+  let sum = 0;
+  precoItems.forEach((preco) => { 
+    const prices = preco.innerText.split('$')[1]; // transforma string em array e acessa o primeiro elemento.
+      sum += Number(prices); // transforma o price em número.
+    }); 
+    return sum;
+}
+
+// joga a soma no .totalPrice para aparecer na tela (requsito 5):
+  function createTotalPrice() {
+    const totalPrice = document.querySelector('.total-price');
+    totalPrice.innerHTML = sumPrices();
+  }
+
 // Elimina item clicado do cart (requisito 3): 
 function cartItemClickListener(event) {
 event.target.remove();
 saveCartItems(sectionItems.innerHTML);
+createTotalPrice();
 }
 
 // Cria o item da lista:
@@ -43,6 +60,7 @@ function clickCart(product) {
 const itemsCart = createCartItemElement(product);
 sectionItems.appendChild(itemsCart);
 saveCartItems(sectionItems.innerHTML);
+createTotalPrice();
 }
 
 // Requisito 2: 
@@ -101,6 +119,7 @@ const buttonCleadCart = document.querySelector('.empty-cart');
 buttonCleadCart.addEventListener('click', () => {
 sectionItems.innerHTML = '';
 saveCartItems(sectionItems.innerHTML);
+createTotalPrice();
 });
 
 // Restaura os itens no carrinho quando recarrega (requisito 4):
@@ -121,4 +140,5 @@ cartItem.forEach((item) => item.addEventListener('click', cartItemClickListener)
 window.onload = () => { 
 searchProducts('computador');
 restoreItems();
-}; 
+createTotalPrice();
+};
