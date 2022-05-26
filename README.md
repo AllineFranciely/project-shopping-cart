@@ -51,3 +51,5 @@ Buscou-se atender os seguintes requisitos:
 > Implemente os testes nos arquivos da pasta `tests` que está na raiz do projeto.
 - Teste se, ao executar `getSavedCartItems`, o método `localStorage.getItem` é chamado;
 - Teste se, ao executar `getSavedCartItems`, o método `localStorage.getItem` é chamado com o 'cartItems' como parâmetro.
+
+![Gravação de tela de 26-05-2022 18_31_10 (1)](https://user-images.githubusercontent.com/86837443/170585205-020f770c-5dad-47bc-87ee-673b66abc221.gif)
